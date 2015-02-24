@@ -33,7 +33,7 @@ namespace WC3GameNamePastR
                     if (String.IsNullOrEmpty(gameName))
                         continue;
 
-                    if (gameName != lastGameName)
+                    if (!String.IsNullOrEmpty(lastGameName) && gameName != lastGameName)
                         SystemSounds.Exclamation.Play();
 
                     lastGameName = gameName;
