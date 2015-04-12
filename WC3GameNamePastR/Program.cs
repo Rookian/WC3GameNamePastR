@@ -81,7 +81,8 @@ namespace WC3GameNamePastR
 
         private static void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
-            String2VK.SendText(_lastGame);
+            SendKeys.Send(_lastGame);
+            //String2VK.SendText(_lastGame);
         }
 
     }
