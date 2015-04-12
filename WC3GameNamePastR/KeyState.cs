@@ -1,4 +1,4 @@
-﻿namespace WC3GameNamePastR.String2VK
+﻿namespace WC3GameNamePastR
 {
     enum KeyState
     {

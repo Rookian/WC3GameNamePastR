@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeyboardHook\KeyboardHook.cs" />
-    <Compile Include="KeyboardHook\KeyPressedEventArgs.cs" />
-    <Compile Include="KeyboardHook\ModifierKeys.cs" />
+    <Compile Include="KeyboardHook\HotKeyEventArgs.cs" />
+    <Compile Include="KeyboardHook\HotKeyManager.cs" />
+    <Compile Include="KeyboardHook\KeyModifiers.cs" />
     <Compile Include="KeyState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

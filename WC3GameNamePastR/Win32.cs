@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WC3GameNamePastR.String2VK
+namespace WC3GameNamePastR
 {
     public static class Win32
     {

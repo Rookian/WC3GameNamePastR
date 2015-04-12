@@ -10,16 +10,13 @@ namespace WC3GameNamePastR
 {
     class Program
     {
+        private volatile static string _lastGame;
+
         [STAThread]
         static void Main()
         {
-            var hook = new KeyboardHook.KeyboardHook();
-
-            // register the event that is fired after the key press.
-            hook.KeyPressed += hook_KeyPressed;
-
-            // register the control + alt + F12 combination as hot key.
-            hook.RegisterHotKey(ModifierKeys.Control, Keys.M);
+            HotKeyManager.RegisterHotKey(Keys.E, KeyModifiers.Control);
+            HotKeyManager.HotKeyPressed += HotKeyManager_HotKeyPressed;
 
             var webClient = new WebClient { Proxy = null };
             Console.CursorVisible = false;
@@ -45,8 +42,7 @@ namespace WC3GameNamePastR
                     if (!String.IsNullOrEmpty(lastGameName) && gameName != lastGameName)
                         SystemSounds.Exclamation.Play();
 
-                    lastGameName = gameName;
-                    Clipboard.SetText(gameName);
+                    _lastGame = lastGameName = gameName;
 
                     url = "https://entgaming.net/forum/slots_fast.php?id=" + id + "&random=" + random.Next();
                     downloadString = webClient.DownloadString(url);
@@ -81,12 +77,12 @@ namespace WC3GameNamePastR
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
-            hook.Dispose();
         }
 
-        private static void hook_KeyPressed(object sender, KeyPressedEventArgs e)
+        private static void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
-            Console.WriteLine(e.Modifier + " + " + e.Key);
+            String2VK.SendText(_lastGame);
         }
+
     }
 }

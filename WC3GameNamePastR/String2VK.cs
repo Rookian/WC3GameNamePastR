@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WC3GameNamePastR.String2VK
+namespace WC3GameNamePastR
 {
     public static class String2VK
     {
