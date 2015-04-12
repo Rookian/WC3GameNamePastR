@@ -4,6 +4,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using WC3GameNamePastR.KeyboardHook;
 
 namespace WC3GameNamePastR
 {
@@ -12,6 +13,14 @@ namespace WC3GameNamePastR
         [STAThread]
         static void Main()
         {
+            var hook = new KeyboardHook.KeyboardHook();
+
+            // register the event that is fired after the key press.
+            hook.KeyPressed += hook_KeyPressed;
+
+            // register the control + alt + F12 combination as hot key.
+            hook.RegisterHotKey(ModifierKeys.Control, Keys.M);
+
             var webClient = new WebClient { Proxy = null };
             Console.CursorVisible = false;
 
@@ -71,6 +80,13 @@ namespace WC3GameNamePastR
                     Thread.Sleep(500);
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
+            hook.Dispose();
+        }
+
+        private static void hook_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            Console.WriteLine(e.Modifier + " + " + e.Key);
         }
     }
 }
